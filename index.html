@@ -25,6 +25,22 @@
             position: relative;
         }
 
+        .github-link {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .github-link img {
+            width: 32px;
+            height: 32px;
+            transition: transform 0.3s ease;
+        }
+
+        .github-link img:hover {
+            transform: scale(1.1);
+        }
+
         .footer {
             position: absolute;
             bottom: 10px;
@@ -36,6 +52,9 @@
     </style>
 </head>
 <body>
+    <a href="https://github.com/PtahAI" class="github-link" target="_blank">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="Github"/>
+    </a>
     <div class="footer">Made by PtahAI</div>
 </body>
 </html>
