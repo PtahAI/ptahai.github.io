@@ -1,92 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nexora</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
-    <script>
-        window.onload = () => {
-            setTimeout(() => {
-            document.getElementById("welcome-overlay").style.opacity = "0";
-            document.getElementById("welcome-overlay").style.pointerEvents = "none";
-        }, 2500);
-        }
-    </script>
-    <style>
-       * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fortnite Download</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+  <script>
+    function updateCountdown() {
+      const endDate = new Date("2025-04-28T16:30:00").getTime();
+      const now = new Date().getTime();
+      const distance = endDate - now;
 
-        body {
-            font-family: 'Outfit', sans-serif;
-            background: #ffffff;
-            color: #111;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-        }
+      const container = document.getElementById("download-container");
+      const timerValue = document.getElementById("timer-value");
+      const timerLabel = document.querySelector(".timer-label");
 
-        .github-link {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
+      if (distance <= 0) {
+        if (timerValue) timerValue.style.display = "none";
+        if (timerLabel) timerLabel.style.display = "none";
+        if (container) container.style.display = "block";
+        return;
+      } else {
+        if (container) container.style.display = "none";
+        if (timerValue) timerValue.style.display = "block";
+        if (timerLabel) timerLabel.style.display = "block";
+      }
 
-        .github-link img {
-            width: 32px;
-            height: 32px;
-            transition: transform 0.3s ease;
-        }
+      const days = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
+      const hours = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+      const minutes = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+      const seconds = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
 
-        .github-link img:hover {
-            transform: scale(1.1);
-        }
+      timerValue.innerHTML = `<strong>${days}:${hours}:${minutes}:${seconds}</strong>`;
+    }
 
-        .footer {
-            position: absolute;
-            bottom: 10px;
-            text-align: center;
-            width: 100%;
-            font-size: 0.9rem;
-            color: #888;
-        }
+    setInterval(updateCountdown, 1000);
+    window.onload = () => {
+      updateCountdown();
 
-        .welcome-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(10, 10, 10, 0.7);
-            backdrop-filter: blur(20px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 1s ease;
-        }
+      const welcome = document.getElementById("welcome-overlay");
+      welcome.classList.add("fade-in");
 
-        .welcome-text {
-            font-size: 5rem;
-            font-weight: 900;
-            color: #37b800;
-        }
-    </style>
+      setTimeout(() => {
+        welcome.classList.remove("fade-in");
+        welcome.classList.add("fade-out");
+        setTimeout(() => {
+          welcome.style.display = "none";
+        }, 1000);
+      }, 2500);
+    }
+  </script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: #ffffff;
+      color: #111;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .github-link {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .github-link img {
+      width: 32px;
+      height: 32px;
+      transition: transform 0.3s ease;
+    }
+
+    .github-link img:hover {
+      transform: scale(1.1);
+    }
+
+    .timer-container {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .timer-label {
+      font-size: 4rem;
+      color: #000;
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+
+    #timer-value {
+      font-size: 7rem;
+      letter-spacing: 6px;
+      color: #ff4c4c;
+      font-weight: bold;
+    }
+
+    .container {
+      text-align: center;
+      background: #f2f2f2;
+      padding: 35px;
+      border-radius: 25px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+      max-width: 550px;
+      animation: fadeIn 1.2s ease-in-out;
+      display: none;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      color: #007fff;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+      color: #333;
+    }
+
+    .download-btn {
+      padding: 12px 28px;
+      font-size: 0.95rem;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #007fff, #00c3ff);
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 20px rgba(0, 195, 255, 0.3);
+      animation: pulse 2s infinite;
+      font-weight: bold;
+    }
+
+    .download-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 25px rgba(0, 195, 255, 0.5);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 10px;
+      text-align: center;
+      width: 100%;
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    .welcome-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 10, 10, 0.7);
+      backdrop-filter: blur(20px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .fade-in {
+      opacity: 1 !important;
+      pointer-events: auto;
+      transition: opacity 1s ease;
+    }
+
+    .fade-out {
+      opacity: 0 !important;
+      transition: opacity 1s ease;
+    }
+
+    .welcome-text {
+      font-size: 5rem;
+      font-weight: 900;
+      color: #37b800;
+    }
+  </style>
 </head>
 <body>
-    <div id="welcome-overlay" class="welcome-overlay">
-        <div class="welcome-text">Welcome To Nexora</div>
-    </div>
-    <a href="https://github.com/PtahAI" class="github-link" target="_blank">
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="Github"/>
+  <div id="welcome-overlay" class="welcome-overlay">
+    <div class="welcome-text">Welcome To Nexora</div>
+  </div>
+  <a href="https://github.com/yourusername" class="github-link" target="_blank">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub" />
+  </a>
+  <div class="timer-container">
+    <div class="timer-label">Release</div>
+    <div id="timer-value"></div>
+  </div>
+  <div class="container" id="download-container">
+    <h1><strong>Download Fortnite</strong></h1>
+    <p><strong>Join the battle and become the last one standing!</strong></p>
+    <a href="#" download>
+      <button class="download-btn">Download Now</button>
     </a>
-    <div class="footer">Made by PtahAI</div>
+  </div>
+  <div class="footer">Made by PtahAI</div>
 </body>
 </html>
