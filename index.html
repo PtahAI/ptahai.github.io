@@ -37,17 +37,10 @@
     setInterval(updateCountdown, 1000);
     window.onload = () => {
       updateCountdown();
-
-      const welcome = document.getElementById("welcome-overlay");
-      welcome.classList.add("fade-in");
-
-      setTimeout(() => {
-        welcome.classList.remove("fade-in");
-        welcome.classList.add("fade-out");
+      
         setTimeout(() => {
           welcome.style.display = "none";
         }, 1000);
-      }, 2500);
     }
   </script>
   <style>
@@ -116,11 +109,6 @@
       display: none;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     h1 {
       font-size: 1.6rem;
       color: #007fff;
@@ -182,17 +170,6 @@
       z-index: 9999;
       opacity: 0;
       pointer-events: none;
-    }
-
-    .fade-in {
-      opacity: 1 !important;
-      pointer-events: auto;
-      transition: opacity 1s ease;
-    }
-
-    .fade-out {
-      opacity: 0 !important;
-      transition: opacity 1s ease;
     }
 
     .welcome-text {
